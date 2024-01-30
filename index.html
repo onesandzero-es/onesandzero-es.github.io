@@ -36,8 +36,12 @@
                 emailjs.sendForm('service_4x26379', 'template_h22do9t', this)
                     .then(function () {
                         console.log('SUCCESS!');
+                        document.getElementById('email').textContent = '';
+                        document.getElementById('submitSuccessMessage').className = 'd-flex';
                     }, function (error) {
                         console.log('FAILED...', error);
+                        document.getElementById('email').textContent = '';
+                        document.getElementById('submitErrorMessage').className = 'd-flex';
                     });
             });
         }
