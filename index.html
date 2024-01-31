@@ -30,6 +30,11 @@
         window.onload = function () {
             document.getElementById('contact-form').addEventListener('submit', function (event) {
                 event.preventDefault();
+
+                // Show sending message
+                console.log('SENDING...');
+                document.getElementById('sendingMessage').className = 'd-flex';
+
                 // generate a five digit number for the contact_number variable
                 this.contact_number.value = Math.random() * 100000 | 0;
                 // these IDs from the previous steps
@@ -37,10 +42,12 @@
                     .then(function () {
                         console.log('SUCCESS!');
                         document.getElementById('email').textContent = '';
+                        document.getElementById('sendingMessage').className = 'd-none';
                         document.getElementById('submitSuccessMessage').className = 'd-flex';
                     }, function (error) {
                         console.log('FAILED...', error);
                         document.getElementById('email').textContent = '';
+                        document.getElementById('sendingMessage').className = 'd-none';
                         document.getElementById('submitErrorMessage').className = 'd-flex';
                     });
             });
@@ -73,6 +80,10 @@
                     </div>
                     <div class="invalid-feedback mt-2" data-sb-feedback="email:required">An email is required.</div>
                     <div class="invalid-feedback mt-2" data-sb-feedback="email:email">Email is not valid.</div>
+                    <!-- Show sending message-->
+                    <div class="d-none" id="sendingMessage">
+                        <div class="text-center mb-3 mt-2">Sending your message...</div>
+                    </div>
                     <!-- Submit success message-->
                     <!---->
                     <!-- This is what your users will see when the form-->
